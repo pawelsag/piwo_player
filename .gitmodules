@@ -1,0 +1,12 @@
+[submodule "third_party/mipc"]
+	path = third_party/mipc
+  url = https://gitlab.com/skn_MOS/piwo/libraries/mipc
+[submodule "third_party/libpiwo"]
+	path = third_party/libpiwo
+	url = https://gitlab.com/skn_MOS/piwo/libraries/libpiwo
+[submodule "third_party/rapidjson"]
+	path = third_party/rapidjson
+	url = https://github.com/Tencent/rapidjson
+[submodule "third_party/fmt"]
+	path = third_party/fmt
+	url = https://github.com/fmtlib/fmt
