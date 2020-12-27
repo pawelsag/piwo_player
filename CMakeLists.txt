@@ -53,6 +53,12 @@ set(SRC_FILES
 message(STATUS ${FORM_FILES})
 add_executable(${TARGET_NAME} ${SRC_FILES} ${MOC_HEADERS} ${FORM_FILES} )
 
+option(ENABLE_LOGGING "enable logs" OFF)
+
+if(ENABLE_LOGGING)
+  add_definitions(-DSHOW_LOGS)
+endif()
+
 option(BUILD_TESTS "enable tests" OFF)
 
 if(BUILD_TESTS)
@@ -78,6 +84,7 @@ target_link_libraries( "${TARGET_NAME}"
   Qt5::Gui
   Qt5::Widgets
   Qt5::OpenGL
+  logger
 )
 
 if(WIN32)
@@ -91,3 +98,4 @@ if(WIN32)
   endif()
 endif()
 
+add_subdirectory(src)
