@@ -1,0 +1,71 @@
+#!/bin/bash
+set -ex
+
+function cleanup()
+{
+  local tmp_path=$1
+  rm -rf "${tmp_path}"
+}
+
+h_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )/.."
+bass_dir="${h_dir}/libs/libbass"
+mipc_dir="${h_dir}/libs/libmipc"
+piwo_dir="${h_dir}/libs/libpiwo"
+rapid_dir="${h_dir}/libs/rapidjson"
+fmt_dir="${h_dir}/libs/fmt"
+bass_tmp="${h_dir}/temp"
+mkdir -p "${bass_dir}" "${mipc_dir}" "${piwo_dir}" "$rapid_dir" "$fmt_dir"
+
+trap "cleanup ${bass_tmp}" EXIT SIGINT
+
+# install libbass
+
+mkdir -p "${bass_tmp}" && cd "${bass_tmp}"
+wget 'http://us.un4seen.com/files/bass24-linux.zip' >/dev/null 2>&1
+unzip 'bass24-linux.zip' >/dev/null 2>&1
+cp 'x64/libbass.so' "${bass_dir}"
+cp 'bass.h' "${bass_dir}"
+
+#install rapidjson
+
+cd "${h_dir}/third_party/rapidjson"
+rm -rf build
+mkdir build && cd build
+eval "cmake -DCMAKE_INSTALL_PREFIX=${rapid_dir} -DRAPIDJSON_BUILD_ASAN=OFF \
+                                                -DRAPIDJSON_BUILD_EXAMPLES=OFF \
+                                                -DRAPIDJSON_BUILD_TESTS=OFF \
+                                                -DBUILD_TESTING=OFF \
+                                                -DRAPIDJSON_BUILD_THIRDPARTY_GTEST=OFF \
+                                                -DRAPIDJSON_BUILD_UBSAN=OFF \
+                                                -DCMAKE_BUILD_TYPE=Release .."
+make -j$(nproc) install
+
+export PKG_CONFIG_PATH="${rapid_dir}/lib/pkgconfig:${PKG_CONFIG_PATH}" 
+
+#install fmt
+
+cd "${h_dir}/third_party/fmt"
+rm -rf build
+mkdir build && cd build
+eval "cmake -DCMAKE_INSTALL_PREFIX=${fmt_dir} -DFMT_TEST=OFF -DFMT_CUDA_TEST=OFF -DCMAKE_BUILD_TYPE=Release .."
+make -j$(nproc) install
+
+export PKG_CONFIG_PATH="${fmt_dir}/lib/pkgconfig:${PKG_CONFIG_PATH}" 
+
+#install mipc
+
+cd "${h_dir}/third_party/mipc"
+rm -rf build
+mkdir build && cd build
+eval "cmake -DCMAKE_INSTALL_PREFIX=${mipc_dir} .."
+make -j$(nproc) install
+
+export PKG_CONFIG_PATH="${mipc_dir}/lib/pkgconfig:${PKG_CONFIG_PATH}" 
+
+#install libpiwo
+
+cd "${h_dir}/third_party/libpiwo"
+rm -rf build
+mkdir build && cd build
+eval "cmake -DCMAKE_INSTALL_PREFIX=${piwo_dir} .."
+make -j$(nproc) install
