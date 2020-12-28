@@ -1,11 +1,11 @@
 #include <QApplication>
-#include <QtWidgets>
-#include <fmt/format.h>
 
-int
-main(int argc, char* argv[])
+#include "main_window.hpp"
+
+int main(int argc, char *argv[])
 {
-  QApplication app(argc, argv);
-  fmt::print("Hello World!\n");
-  return app.exec();
+    QApplication a(argc, argv);
+    gui::main_window w;
+    w.show();
+    return a.exec();
 }
