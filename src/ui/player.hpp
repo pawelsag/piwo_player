@@ -1,6 +1,4 @@
-#ifndef PLAYER_H
-#define PLAYER_H
-
+#pragma once
 #include <QWidget>
 
 #include"display.hpp"
@@ -23,5 +21,3 @@ namespace gui {
         extension::display screen;
     };
 } //namepspace gui
-
-#endif // PLAYER_H

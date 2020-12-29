@@ -1,6 +1,4 @@
-#ifndef MAIN_WINDOW_H
-#define MAIN_WINDOW_H
-
+#pragma once
 #include <QMainWindow>
 
 #include "modules_configuration.hpp"
@@ -31,4 +29,3 @@ namespace gui {
         settings settings_widget;
     };
 } // namespace gui
-#endif // MAIN_WINDOW_H

@@ -1,6 +1,4 @@
-#ifndef MODULES_VERIFY_H
-#define MODULES_VERIFY_H
-
+#pragma once
 #include <QWidget>
 
 namespace Ui {
@@ -19,4 +17,3 @@ namespace gui {
         Ui::modules_verify *ui;
     };
 } //namepspace gui
-#endif // MODULES_VERIFY_H

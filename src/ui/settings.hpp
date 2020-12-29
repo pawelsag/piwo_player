@@ -1,6 +1,4 @@
-#ifndef SETTINGS_H
-#define SETTINGS_H
-
+#pragma once
 #include <QWidget>
 
 namespace Ui {
@@ -19,4 +17,3 @@ namespace gui {
         Ui::settings *ui;
     };
 } //namepspace gui
-#endif // SETTINGS_H

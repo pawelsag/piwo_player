@@ -1,6 +1,4 @@
-#ifndef MODULES_CONFIGURATION_H
-#define MODULES_CONFIGURATION_H
-
+#pragma once
 #include <QWidget>
 
 namespace Ui {
@@ -21,4 +19,3 @@ namespace gui {
     };
 } //namepspace gui
 
-#endif // MODULES_CONFIGURATION_H
