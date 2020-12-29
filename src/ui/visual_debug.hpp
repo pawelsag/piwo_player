@@ -13,7 +13,7 @@ namespace gui {
 
   public:
       explicit visual_debug(QWidget *parent = nullptr);
-      void configure_screen(int rows, int cols, int width, int height);
+      void add_screen(int rows, int cols, int width, int height);
       ~visual_debug();
 
   private:

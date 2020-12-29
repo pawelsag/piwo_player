@@ -9,7 +9,7 @@ namespace gui {
     }
 
     void
-    player::configure_screen(int rows, int cols, int width, int height)
+    player::add_screen(int rows, int cols, int width, int height)
     {
         auto screen_width = static_cast<uint32_t>(width -
                                                 (this->ui->tab_player_loaded_anims->size().width() + 50));

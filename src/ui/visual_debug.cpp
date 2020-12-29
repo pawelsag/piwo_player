@@ -8,7 +8,7 @@ namespace gui {
         ui->setupUi(this);
     }
     void
-    visual_debug::configure_screen(int rows, int cols, int width, int height)
+    visual_debug::add_screen(int rows, int cols, int width, int height)
     {
         auto screen_width = static_cast<uint32_t>(width -
                                                 (this->ui->gb_standard->size().width() + 50));
